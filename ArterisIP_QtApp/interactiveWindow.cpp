@@ -26,7 +26,6 @@ interactiveWindow::interactiveWindow(QWidget *parent) :QGraphicsView(parent)
     scene = new QGraphicsScene();
     setScene(scene);
 
-    connect(scene, &QGraphicsScene::selectionChanged, this, &interactiveWindow::newSelection);
 }
 
 
@@ -205,20 +204,10 @@ void interactiveWindow::showSelectedItems()
     {
       
         rubbBandSelection[i]->setSelected(true);
-
   
         //setBorderColor(Qt::yellow);
         //QPointF position = (rubbBandSelection[i]->data(0)).toPointF();
        // makeCircle(position);
     }
-
-  
-
-        
+     
 }
-void interactiveWindow::newSelection()
-{
-    QList<QGraphicsItem *> allItems;
-    allItems = scene->selectedItems();
-}
-

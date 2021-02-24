@@ -3,11 +3,14 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QWidget>
 #include <QStatusBar>
 #include <QPushButton>
 #include <QToolButton>
 #include "interactiveWindow.h"
 #include <QColorDialog>
+#include <QSplitter>
 
 #define MAINBACKGROUND  QString("rgba(62, 62, 66, 240)")
 
@@ -22,7 +25,8 @@ class Ui_MainWindow
 {
 public:
     QWidget     *centralwidget;
-    QVBoxLayout *mainVLayout;
+    QHBoxLayout *mainLayout;
+    QVBoxLayout *rightLayout;
     interactiveWindow      *mainLabel;
     QStatusBar      *statusbar;
     QToolButton      *selectBtn;
@@ -30,6 +34,8 @@ public:
     QPushButton      *updateBtn;
     QColorDialog    *circleColorDialog;
     QColorDialog    *circleBorderColorDialog;
+    QSplitter       *horizontalSplitter;
+    QWidget         *rightContainer;
 
     /* Function: setupUi
 
@@ -46,15 +52,9 @@ public:
         mainLabel = new interactiveWindow(MainWindow);
         mainLabel->setObjectName(QString::fromUtf8("mainLabel"));
         mainLabel->setMinimumSize(500,500);
-     //   mainLabel->setMaximumSize(600,600);
         mainLabel->setSceneRect(50, 50, 500, 500);
 
-        // create layout for window
-        mainVLayout = new QVBoxLayout();
-        mainVLayout->setObjectName(QString::fromUtf8("mainVLayout"));
-        mainVLayout->setContentsMargins(10, 10, 10, 10);
-        mainVLayout->setSpacing(0);
-        mainVLayout->addWidget(mainLabel);
+
 
         // create buttons to go on status bar
         selectBtn = new QToolButton(MainWindow);
@@ -77,19 +77,39 @@ public:
         updateBtn->setText("update");
 
 
+        rightLayout = new QVBoxLayout();
+        rightLayout->setObjectName(QString::fromUtf8("mainVLayout"));
+        rightLayout->setContentsMargins(10, 10, 10, 10);
+        rightLayout->setSpacing(0);
+        rightLayout->addWidget(updateBtn);
+
+        rightContainer = new QWidget(MainWindow);
+        rightContainer->setLayout(rightLayout);
+        rightContainer->setMaximumWidth(200);
+
+        horizontalSplitter = new QSplitter(MainWindow);
+        horizontalSplitter->addWidget(mainLabel);
+        horizontalSplitter->addWidget(rightContainer);
+
+    // create layout for window
+        mainLayout = new QHBoxLayout();
+        mainLayout->setObjectName(QString::fromUtf8("mainVLayout"));
+        mainLayout->setContentsMargins(10, 10, 10, 10);
+        mainLayout->setSpacing(0);
+        mainLayout->addWidget(horizontalSplitter);
 
         // set status bar with buttons
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         statusbar->addPermanentWidget(selectBtn, 0);
         statusbar->addPermanentWidget(removeBtn, 0);
-        statusbar->addPermanentWidget(updateBtn, 0);
+       // statusbar->addPermanentWidget(updateBtn, 0);
         MainWindow->setStatusBar(statusbar);
 
         MainWindow->setStyleSheet("background-color: "+ MAINBACKGROUND + "; ");
 
         // Set final layout on central UI widget
-        centralwidget->setLayout(mainVLayout);
+        centralwidget->setLayout(mainLayout);
         centralwidget->isWindow();
 
     }    // setupUi

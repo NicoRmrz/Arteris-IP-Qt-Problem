@@ -1,2 +1,4 @@
-﻿  interactiveWindow.cpp
-  ArterisIP_QtApp.vcxproj -> C:\Git Projects\Arteris IP\ArterisIP_QtApp\x64\Debug\ArterisIP_QtApp.exe
+﻿  main.cpp
+  mainWindow.cpp
+  moc_mainWindow.cpp
+  ArterisIP_QtApp.vcxproj -> C:\Git Projects\Arteris-IP-Qt-Problem\x64\Debug\ArterisIP_QtApp.exe

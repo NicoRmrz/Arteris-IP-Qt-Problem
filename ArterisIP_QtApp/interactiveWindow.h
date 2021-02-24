@@ -37,7 +37,6 @@ private:
 
     void makeCircle(QPointF circleCord);
     void showSelectedItems();
-    void newSelection();
     QGraphicsScene *scene;
     QPoint startPos, endPos;
     QPointF placeCirPos;
