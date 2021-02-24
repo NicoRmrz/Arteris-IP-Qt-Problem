@@ -8,6 +8,7 @@
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QToolTip>
+#include <QList>
 #include <QGraphicsEllipseItem>
 #include <QRubberBand>
 
@@ -34,13 +35,15 @@ protected:
 
 private:
 
-    void makeCircle();
+    void makeCircle(QPointF circleCord);
+    void showSelectedItems();
+    void newSelection();
     QGraphicsScene *scene;
-    QPoint startPos;
+    QPoint startPos, endPos;
     QPointF placeCirPos;
     int circleRadius, borderWidth;
     bool rubberBandEn, selectBtnEn;
-
+    QList< QGraphicsItem *> rubbBandSelection;
     QRubberBand *rubberBand;
     QColor circleColor, circleBorderColor;
 };
