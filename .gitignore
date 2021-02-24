@@ -31,3 +31,25 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 x64/
+/ArterisIP_QtApp/x64/
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.log
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/ArterisIP_QtApp.lastbuildstate
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/ArterisIP_QtApp.write.1u.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/CL.command.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/CL.read.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/CL.write.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/link.command.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/link.read.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/link.write.1.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/moc.read.1u.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/moc.write.1u.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/rcc.read.1u.tlog
+/ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/rcc.write.1u.tlog
+/ArterisIP_QtApp/x64/Debug/interactiveWindow.obj
+/ArterisIP_QtApp/x64/Debug/main.obj
+/ArterisIP_QtApp/x64/Debug/mainWindow.obj
+/ArterisIP_QtApp/x64/Debug/moc_interactiveWindow.obj
+/ArterisIP_QtApp/x64/Debug/moc_mainWindow.obj
+/ArterisIP_QtApp/x64/Debug/qrc_ArterisIP_QtApp.obj
+/ArterisIP_QtApp/x64/Debug/qt_work.log
+/ArterisIP_QtApp/x64/Debug/vc141.pdb
