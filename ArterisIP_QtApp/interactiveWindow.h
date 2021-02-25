@@ -12,7 +12,9 @@
 #include <QGraphicsEllipseItem>
 #include <QRubberBand>
 
-#define colorIcon QString(":/mainWindow/icons/colorIcon.jpg")
+#define INIT_COLOR      QColor(Qt::blue)
+#define INIT_RADIUS      int(15)
+#define INIT_BORDER      int(2)
 
 class interactiveWindow : public QGraphicsView
 {
@@ -27,6 +29,10 @@ public:
     void setBorderColor(QColor color);
     void setBorderWidth(int width);
     void setSelection(bool selectStatus);
+    void removeSelection();
+    void updateSelection();
+    QList< QGraphicsItem *> rubbBandSelection;
+
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
@@ -41,8 +47,7 @@ private:
     QPoint startPos, endPos;
     QPointF placeCirPos;
     int circleRadius, borderWidth;
-    bool rubberBandEn, selectBtnEn;
-    QList< QGraphicsItem *> rubbBandSelection;
+    bool rubberBandEn, selectBtnEn, updateEn;
     QRubberBand *rubberBand;
     QColor circleColor, circleBorderColor;
 };

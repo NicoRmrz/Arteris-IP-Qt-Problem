@@ -9,10 +9,14 @@ class mainWindow : public QMainWindow
 
 public:
     mainWindow(QWidget *parent = Q_NULLPTR);
+    ~mainWindow();
 
 private:
     Ui::MainWindow *ui;
     void onSelect(bool checked);
     void onRemove();
-    void onUpdate();
+    void onCircleColor();
+    void onCircleBorderColor();
+    void onRadiusSlider(int value);
+    void onWidthSlider(int value);
 };

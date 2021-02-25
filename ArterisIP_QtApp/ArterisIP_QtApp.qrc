@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/mainWindow">
-        <file>icons/colorIcon.jpg</file>
+        <file>icons/openSplitter.png</file>
     </qresource>
 </RCC>
