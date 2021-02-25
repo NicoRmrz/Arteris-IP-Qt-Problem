@@ -1,3 +1,6 @@
+// Author: Nico Ramirez
+// Arteris IP QT Project
+
 #pragma once
 
 #include <QtWidgets/QMainWindow>

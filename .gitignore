@@ -30,7 +30,7 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
-x64/
+x64/*
 /ArterisIP_QtApp/x64/
 /ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.log
 /ArterisIP_QtApp/x64/Debug/ArterisIP_QtApp.tlog/ArterisIP_QtApp.lastbuildstate

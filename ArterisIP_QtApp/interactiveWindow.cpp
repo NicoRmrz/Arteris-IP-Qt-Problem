@@ -1,11 +1,13 @@
-#include "interactiveWindow.h"
+// Author: Nico Ramirez
+// Arteris IP QT Project
 
+#include "interactiveWindow.h"
 
 interactiveWindow::interactiveWindow(QWidget *parent) :QGraphicsView(parent)
 {
     rubberBandEn = false;
     selectBtnEn = false;
-    updateEn = false;
+    resize = false;
     circleRadius = INIT_RADIUS;
     borderWidth = INIT_BORDER;
     circleColor = INIT_COLOR;
@@ -40,7 +42,7 @@ void interactiveWindow::mousePressEvent(QMouseEvent *event)
     {
         placeCirPos = mapToScene(event->pos());
         startPos = event->pos();
-
+        rubbBandSelection.clear();
         if (selectBtnEn)
         {
             if (!rubberBandEn)
@@ -68,7 +70,6 @@ void interactiveWindow::mouseMoveEvent(QMouseEvent *event)
     if (rubberBandEn)
     {
         rubberBand->setGeometry(QRect(startPos, event->pos()).normalized());
-
     }
 }
 
@@ -113,10 +114,6 @@ void interactiveWindow::mouseReleaseEvent(QMouseEvent *event)
             makeCircle(placeCirPos);
         }
     }
-    else if (event->button() == Qt::RightButton)
-    {
-
-    }
 }
 
 /* Function: makeCircle
@@ -131,20 +128,19 @@ void interactiveWindow::makeCircle(QPointF circleCord)
     pen.setBrush(circleBorderColor);
     
     // create ellipse as a Qgraphics item to allow functionality to grab the group of items
-    QGraphicsItem *newCircle = scene->addEllipse(circleCord.x(),
+    QGraphicsItem* newCircle = scene->addEllipse(circleCord.x(),
                                                 circleCord.y(),
                                                 circleRadius,
                                                 circleRadius,
                                                 pen, 
                                                 QBrush(circleColor));
+
     newCircle->setFlags(QGraphicsItem::ItemIsSelectable);
-    newCircle->setData(0, QPointF(circleCord.x(), circleCord.y()));
-
-    if (updateEn)
-    {
-        newCircle->setSelected(false);
-    }
-
+    newCircle->setData(0, QPointF(circleCord.x(), circleCord.y())); // save coordinate
+    newCircle->setData(1, circleRadius);        // save original radius
+    newCircle->setData(2, borderWidth);         // save original border width
+    newCircle->setData(3, circleColor);         // save original color
+    newCircle->setData(4, circleBorderColor);   // save original border color
 }
 
 /* Function: setRadius
@@ -252,7 +248,7 @@ void interactiveWindow::removeSelection()
     // remove selection
     for (int i = 0; i < rubbBandSelection.size(); i++)
     {
-        delete rubbBandSelection[i];
+        scene->removeItem(rubbBandSelection[i]);
     }
 }
 
@@ -260,18 +256,29 @@ void interactiveWindow::removeSelection()
 
         Update Items in rubber band
 */
-void interactiveWindow::updateSelection()
+void interactiveWindow::updateSelection(bool resize)
 {
-   // showSelectedItems();
-    updateEn = true;
     for (int i = 0; i < rubbBandSelection.size(); i++)
     {
-       // rubbBandSelection[i]->hide();
         QPointF position = (rubbBandSelection[i]->data(0)).toPointF();
 
+        // save size if only coloring
+        if (!resize)
+        {
+            setRadius((rubbBandSelection[i]->data(1)).toInt());
+            setBorderWidth((rubbBandSelection[i]->data(2)).toInt());
+        }
+        else // save color if only resizing
+        {
+            setCircleColor((rubbBandSelection[i]->data(3)).value<QColor>());
+            setBorderColor((rubbBandSelection[i]->data(4)).value<QColor>());
+        }
+ 
         makeCircle(position);
-        delete rubbBandSelection[i];
-
+        scene->removeItem(rubbBandSelection[i]);
     }
-    updateEn = false;
+
+    // reset rubber band selection with updated items
+    rubbBandSelection = items(QRect(startPos, endPos), Qt::IntersectsItemShape);
+    showSelectedItems();
 }

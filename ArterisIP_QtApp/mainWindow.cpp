@@ -1,3 +1,6 @@
+// Author: Nico Ramirez
+// Arteris IP QT Project
+
 #include "mainWindow.h"
 
 mainWindow::mainWindow(QWidget *parent)
@@ -14,8 +17,8 @@ mainWindow::mainWindow(QWidget *parent)
     connect(ui->removeBtn, &QPushButton::released, this, &mainWindow::onRemove);
     connect(ui->circleClrBtn, &QPushButton::released, this, &mainWindow::onCircleColor);
     connect(ui->circleBorderClrBtn, &QPushButton::released, this, &mainWindow::onCircleBorderColor);
-    connect(ui->radiusSlider, &QSlider::sliderMoved, this, &mainWindow::onRadiusSlider);
-
+    connect(ui->radiusSlider, &QSlider::valueChanged, this, &mainWindow::onRadiusSlider);
+    connect(ui->widthSlider, &QSlider::valueChanged, this, &mainWindow::onWidthSlider);
 }
 
 /* Function: onCircleColor
@@ -58,7 +61,7 @@ void mainWindow::onCircleColor()
     //update selection
     if (ui->mainLabel->rubbBandSelection.size() > 0)
     {
-        ui->mainLabel->updateSelection();
+        ui->mainLabel->updateSelection(false);
     }
 }
 
@@ -79,7 +82,7 @@ void mainWindow::onCircleBorderColor()
     //update selection
     if (ui->mainLabel->rubbBandSelection.size() > 0)
     {
-        ui->mainLabel->updateSelection();
+        ui->mainLabel->updateSelection(false);
     }
 }
 
@@ -98,7 +101,7 @@ void mainWindow::onRadiusSlider(int value)
     //update selection
     if (ui->mainLabel->rubbBandSelection.size() > 0)
     {
-        ui->mainLabel->updateSelection();
+        ui->mainLabel->updateSelection(true);
     }
 }
 
@@ -117,7 +120,7 @@ void mainWindow::onWidthSlider(int value)
     //update selection
     if (ui->mainLabel->rubbBandSelection.size() > 0)
     {
-        ui->mainLabel->updateSelection();
+        ui->mainLabel->updateSelection(true);
     }
 }
 

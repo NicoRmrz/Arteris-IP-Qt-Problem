@@ -1,4 +1,6 @@
-#pragma once
+// Author: Nico Ramirez
+// Arteris IP QT Project
+
 #pragma once
 
 #include <QWidget>
@@ -25,14 +27,12 @@ public:
     ~interactiveWindow() {};
     void setRadius(int radius);
     void setCircleColor(QColor color);
-
     void setBorderColor(QColor color);
     void setBorderWidth(int width);
     void setSelection(bool selectStatus);
     void removeSelection();
-    void updateSelection();
+    void updateSelection(bool resize);
     QList< QGraphicsItem *> rubbBandSelection;
-
 
 protected:
     void mouseMoveEvent(QMouseEvent *event);
@@ -47,7 +47,8 @@ private:
     QPoint startPos, endPos;
     QPointF placeCirPos;
     int circleRadius, borderWidth;
-    bool rubberBandEn, selectBtnEn, updateEn;
+    bool resize;
+    bool rubberBandEn, selectBtnEn;
     QRubberBand *rubberBand;
     QColor circleColor, circleBorderColor;
 };

@@ -1,3 +1,6 @@
+// Author: Nico Ramirez
+// Arteris IP QT Project
+
 #pragma once
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QLabel>
@@ -169,6 +172,7 @@ public:
         radiusLabel->setMaximumSize(150, 25);
         radiusLabel->setAlignment(Qt::AlignCenter);
         radiusLabel->setText("Radius");
+        radiusLabel->setStyleSheet("color: white;font: 14px bold;");
 
         circleRadiusLayout = new QVBoxLayout();
         circleRadiusLayout->setObjectName(QString::fromUtf8("circleRadiusLayout"));
@@ -177,7 +181,31 @@ public:
         circleRadiusLayout->addWidget(radiusLabel, Qt::AlignCenter);
         circleRadiusLayout->addWidget(radiusSlider);
 
+        // circle border width
+        widthSlider = new QSlider(MainWindow);
+        widthSlider->setMinimumSize(150, 25);
+        widthSlider->setMaximumSize(150, 25);
+        widthSlider->setMaximum(20);
+        widthSlider->setMinimum(0);
+        widthSlider->setOrientation(Qt::Horizontal);
+        widthSlider->setValue(INIT_BORDER);
 
+        widthLabel = new QLabel(MainWindow);
+        widthLabel->setMinimumSize(150, 25);
+        widthLabel->setMaximumSize(150, 25);
+        widthLabel->setAlignment(Qt::AlignCenter);
+        widthLabel->setText("Border Width");
+        widthLabel->setStyleSheet("color: white;font: 14px bold;");
+
+        circleBorderWidthLayout = new QVBoxLayout();
+        circleBorderWidthLayout->setObjectName(QString::fromUtf8("circleBorderWidthLayout"));
+        circleBorderWidthLayout->setContentsMargins(0, 0, 0, 0);
+        circleBorderWidthLayout->setSpacing(0);
+        circleBorderWidthLayout->addWidget(widthLabel, Qt::AlignCenter);
+        circleBorderWidthLayout->addWidget(widthSlider);
+
+
+        // final right settings layout
         rightLayout = new QVBoxLayout();
         rightLayout->setObjectName(QString::fromUtf8("rightLayout"));
         rightLayout->setContentsMargins(10, 10, 10, 10);
@@ -185,6 +213,7 @@ public:
         rightLayout->addLayout(circleClrLayout);
         rightLayout->addLayout(circleBorderClrLayout);
         rightLayout->addLayout(circleRadiusLayout);
+        rightLayout->addLayout(circleBorderWidthLayout);
 
         rightContainer = new QWidget(MainWindow);
         rightContainer->setLayout(rightLayout);

@@ -1,3 +1,6 @@
+// Author: Nico Ramirez
+// Arteris IP QT Project
+
 #include "mainWindow.h"
 #include <QtWidgets/QApplication>
 
