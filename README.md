@@ -9,3 +9,7 @@ Create an application with Qt or PyQt which allows the following:
 - edit any other properties you think would be useful
 - remove multiple circles at once
 - bonus points for being able to edit the properties of multiple circles at once
+
+
+## GUI
+![](./screenshots/gui.png)
