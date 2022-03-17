@@ -12,4 +12,4 @@ Create an application with Qt or PyQt which allows the following:
 
 
 ## GUI
-![](./screenshots/gui.png)
+![](./screenshot/gui.png)
